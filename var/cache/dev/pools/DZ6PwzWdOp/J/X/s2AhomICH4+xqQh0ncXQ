@@ -1,0 +1,30 @@
+<?php //subresource_operations_a9ac32876bb5c1968f349ccb55708e29
+
+return [PHP_INT_MAX, [
+    'api_profils_utilisateurs_get_subresource' => [
+        'property' => 'utilisateurs',
+        'collection' => true,
+        'resource_class' => 'App\\Entity\\Utilisateur',
+        'shortNames' => [
+            'Utilisateur',
+            'Profil',
+        ],
+        'identifiers' => [
+            [
+                'id',
+                'App\\Entity\\Profil',
+                true,
+            ],
+        ],
+        'operation_name' => 'utilisateurs_get_subresource',
+        'route_name' => 'api_profils_utilisateurs_get_subresource',
+        'path' => '/admin/profils/{id}/utilisateurs.{_format}',
+        'defaults' => [],
+        'requirements' => [],
+        'options' => [],
+        'host' => '',
+        'schemes' => [],
+        'condition' => '',
+        'controller' => null,
+    ],
+]];

@@ -1,0 +1,63 @@
+<?php //%255BApp%255CEntity%255CApprenant%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
+        clone ($p['ApiPlatform\\Core\\Annotation\\ApiResource'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiResource')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'repositoryClass' => [
+                'App\\Repository\\ApprenantRepository',
+            ],
+            'collectionOperations' => [
+                1 => [
+                    'get' => [
+                        'security' => '(is_granted(\'ROLE_ADMIN\') or is_granted(\'ROLE_CM\') or is_granted(\'ROLE_Formateur\'))',
+                        'security_message' => 'Acces Denied',
+                    ],
+                    'addApprennant' => [
+                        'security' => '(is_granted(\'ROLE_ADMIN\') or is_granted(\'ROLE_CM\') or is_granted(\'ROLE_Formateur\'))',
+                        'security_message' => 'Acces Denied',
+                        'method' => 'POST',
+                        'path' => '/apprenants',
+                        'controller' => 'App\\Controller\\UtilisateurController::AddApprenant',
+                    ],
+                ],
+            ],
+            'itemOperations' => [
+                1 => [
+                    'put' => [
+                        'security' => 'is_granted(\'EDIT\', object)',
+                        'security_message' => 'Acces Denied',
+                    ],
+                    'get' => [
+                        'security' => 'is_granted(\'VIEW\',object)',
+                        'security_message' => 'Acces Denied',
+                    ],
+                ],
+            ],
+            'attributes' => [
+                1 => [
+                    'normalization_context' => [
+                        'groups' => [
+                            'apprenantsRead',
+                        ],
+                    ],
+                    'denormalization_context' => [
+                        'groups' => [
+                            'apprenantsWrite',
+                            'userWrite',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+    ],
+    []
+); }];
