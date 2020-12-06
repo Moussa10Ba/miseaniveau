@@ -19,7 +19,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                         'security' => 'is_granted(\'EDIT\', object)',
                         'security_message' => 'Acces Denied',
                         'method' => 'PUT',
-                        'path' => 'api/apprennants/{id}',
+                        'path' => 'apprennants/{id}',
                         'controller' => 'App\\Controller\\UtilisateurController::updateUser',
                         'input' => null,
                         'output' => null,

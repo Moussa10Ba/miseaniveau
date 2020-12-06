@@ -47,6 +47,16 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     'pagination_items_per_page' => 2,
                     'security' => 'is_granted(\'ROLE_ADMIN\')',
                     'security_message' => 'Vous n\'avez pas acces à cette ressource',
+                    'denormalization_context' => [
+                        'groups' => [
+                            'profilWrite',
+                        ],
+                    ],
+                    'normalization_context' => [
+                        'groups' => [
+                            'profilRead',
+                        ],
+                    ],
                     'route_prefix' => '/admin',
                 ],
             ],

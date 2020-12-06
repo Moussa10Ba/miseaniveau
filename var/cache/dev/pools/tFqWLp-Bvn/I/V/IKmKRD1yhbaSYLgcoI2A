@@ -1,0 +1,118 @@
+<?php //App_Entity_Promo
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Symfony\\Component\\Serializer\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Serializer\\Mapping\\ClassMetadata')),
+        clone ($p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata')),
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\Promo',
+                'id',
+                'lieu',
+                'referenceAgate',
+                'langue',
+                'dateDebut',
+                'dateFin',
+                'apprennants',
+                'titre',
+                'avatar',
+                'description',
+                'profilsorties',
+                'groupePromos',
+                'referentiels',
+                'type',
+                'formateurs',
+            ],
+            'attributesMetadata' => [
+                [
+                    'id' => $o[1],
+                    'lieu' => $o[2],
+                    'referenceAgate' => $o[3],
+                    'langue' => $o[4],
+                    'dateDebut' => $o[5],
+                    'dateFin' => $o[6],
+                    'apprennants' => $o[7],
+                    'titre' => $o[8],
+                    'avatar' => $o[9],
+                    'description' => $o[10],
+                    'profilsorties' => $o[11],
+                    'groupePromos' => $o[12],
+                    'referentiels' => $o[13],
+                    'type' => $o[14],
+                    'formateurs' => $o[15],
+                ],
+            ],
+            'groups' => [
+                1 => [
+                    'get_promo_ref_formaRead',
+                    'getApprenantGroupePrincipalRead',
+                ],
+                [
+                    'get_promo_ref_formaRead',
+                    'add_promo_apprenantWrite',
+                    'getApprenantGroupePrincipalRead',
+                ],
+                [
+                    'get_promo_ref_formaRead',
+                    'add_promo_apprenantWrite',
+                    'getApprenantGroupePrincipalRead',
+                ],
+                [
+                    'get_promo_ref_formaRead',
+                    'add_promo_apprenantWrite',
+                    'getApprenantGroupePrincipalRead',
+                ],
+                [
+                    'get_promo_ref_formaRead',
+                    'add_promo_apprenantWrite',
+                    'getApprenantGroupePrincipalRead',
+                ],
+                [
+                    'get_promo_ref_formaRead',
+                    'add_promo_apprenantWrite',
+                    'getApprenantGroupePrincipalRead',
+                ],
+                [
+                    'add_promo_apprenantWrite',
+                    'get_promo_ref_formaRead',
+                    'getApprenantGroupePrincipalRead',
+                ],
+                [
+                    'get_promo_ref_formaRead',
+                ],
+                10 => [
+                    'get_promo_ref_formaRead',
+                ],
+                12 => [
+                    'get_promo_ref_formaRead',
+                ],
+                [
+                    'get_promo_ref_formaRead',
+                ],
+                15 => [
+                    'get_promo_ref_formaRead',
+                    'getApprenantGroupePrincipalRead',
+                ],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];

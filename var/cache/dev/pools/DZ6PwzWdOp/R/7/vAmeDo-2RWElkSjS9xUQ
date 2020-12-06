@@ -1,3 +1,30 @@
 <?php //subresource_operations_9f23c2d6676a1f68268fe9bd4dcbf7e3
 
-return [PHP_INT_MAX, []];
+return [PHP_INT_MAX, [
+    'api_profil_sorties_apprenants_get_subresource' => [
+        'property' => 'apprenants',
+        'collection' => true,
+        'resource_class' => 'App\\Entity\\Apprenant',
+        'shortNames' => [
+            'Apprenant',
+            'ProfilSortie',
+        ],
+        'identifiers' => [
+            [
+                'id',
+                'App\\Entity\\ProfilSortie',
+                true,
+            ],
+        ],
+        'operation_name' => 'apprenants_get_subresource',
+        'route_name' => 'api_profil_sorties_apprenants_get_subresource',
+        'path' => '/admin/profil_sorties/{id}/apprenants.{_format}',
+        'defaults' => [],
+        'requirements' => [],
+        'options' => [],
+        'host' => '',
+        'schemes' => [],
+        'condition' => '',
+        'controller' => null,
+    ],
+]];

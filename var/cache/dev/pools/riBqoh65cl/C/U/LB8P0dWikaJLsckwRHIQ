@@ -11,6 +11,27 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             'repositoryClass' => [
                 'App\\Repository\\FormateurRepository',
             ],
+            'collectionOperations' => [
+                1 => [
+                    'get' => [
+                        'security' => 'is_granted(\'VIEW\', object)',
+                        'security_message' => 'Acces Denied',
+                    ],
+                    'AddFormateur' => [
+                        'security' => 'is_granted(\'ROLE_ADMIN\')',
+                        'security_message' => 'Acces Denied',
+                        'method' => 'POST',
+                        'controller' => 'App\\Controller\\Utilisateur::addFormateur',
+                    ],
+                ],
+            ],
+            'itemOperations' => [
+                1 => [
+                    'get',
+                    'put',
+                    'delete',
+                ],
+            ],
         ],
     ],
     [

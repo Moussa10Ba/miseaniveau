@@ -40,33 +40,12 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                             ],
                         ],
                     ],
-                    'delete' => [
-                        'method' => 'DELETE',
-                        'input_formats' => [
-                            'jsonld' => [
-                                'application/ld+json',
-                            ],
-                            'json' => [
-                                'application/json',
-                            ],
-                            'html' => [
-                                'text/html',
-                            ],
-                        ],
-                        'output_formats' => [
-                            'jsonld' => [
-                                'application/ld+json',
-                            ],
-                            'json' => [
-                                'application/json',
-                            ],
-                            'html' => [
-                                'text/html',
-                            ],
-                        ],
-                    ],
-                    'put' => [
+                    'updateGroupeCompetence' => [
                         'method' => 'PUT',
+                        'path' => '/groupe_competences/{id}',
+                        'controller' => 'App/Controller/GroupeCompetenceController::updateGroupeCompetence',
+                        'input' => null,
+                        'output' => null,
                         'input_formats' => [
                             'jsonld' => [
                                 'application/ld+json',
@@ -76,25 +55,6 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                             ],
                             'html' => [
                                 'text/html',
-                            ],
-                        ],
-                        'output_formats' => [
-                            'jsonld' => [
-                                'application/ld+json',
-                            ],
-                            'json' => [
-                                'application/json',
-                            ],
-                            'html' => [
-                                'text/html',
-                            ],
-                        ],
-                    ],
-                    'patch' => [
-                        'method' => 'PATCH',
-                        'input_formats' => [
-                            'json' => [
-                                'application/merge-patch+json',
                             ],
                         ],
                         'output_formats' => [
@@ -138,8 +98,12 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                             ],
                         ],
                     ],
-                    'post' => [
+                    'saveGroupeCompetence' => [
                         'method' => 'POST',
+                        'path' => '/groupe_competences',
+                        'controller' => 'App/Controller/GroupeCompetenceController::saveGroupeCompetence',
+                        'input' => null,
+                        'output' => null,
                         'input_formats' => [
                             'jsonld' => [
                                 'application/ld+json',
@@ -176,6 +140,20 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             ],
             'attributes' => [
                 [
+                    'pagination_items_per_page' => 3,
+                    'security' => 'is_granted(\'ROLE_ADMIN\' or is_granted(\'ROLE_CM\') or is_granted(\'ROLE_Formateur\'))',
+                    'security_message' => 'Acces Denied',
+                    'denormalization_context' => [
+                        'groups' => [
+                            'groupeCompetenceWrite',
+                        ],
+                    ],
+                    'normalization_context' => [
+                        'groups' => [
+                            'groupeCompetenceRead',
+                        ],
+                    ],
+                    'route_prefix' => '/admin',
                     'input' => null,
                     'output' => null,
                 ],

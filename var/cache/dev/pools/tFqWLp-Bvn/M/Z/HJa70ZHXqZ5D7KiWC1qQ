@@ -6,6 +6,8 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
         clone ($p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata')),
         clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
         clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
     ],
     null,
     [
@@ -15,12 +17,36 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 'id',
                 'libelle',
                 'descriptif',
+                'competences',
+                'referentiels',
             ],
             'attributesMetadata' => [
                 [
                     'id' => $o[1],
                     'libelle' => $o[2],
                     'descriptif' => $o[3],
+                    'competences' => $o[4],
+                    'referentiels' => $o[5],
+                ],
+            ],
+            'groups' => [
+                1 => [
+                    'referentielGroupeCompetenceRead',
+                    'referentielGroupeCompetenceCompetenceRead',
+                    'referentielGroupeCompetenceWrite',
+                ],
+                [
+                    'referentielGroupeCompetenceRead',
+                    'referentielGroupeCompetenceCompetenceRead',
+                    'referentielGroupeCompetenceWrite',
+                ],
+                [
+                    'referentielGroupeCompetenceRead',
+                    'referentielGroupeCompetenceCompetenceRead',
+                    'referentielGroupeCompetenceWrite',
+                ],
+                [
+                    'referentielGroupeCompetenceCompetenceRead',
                 ],
             ],
         ],

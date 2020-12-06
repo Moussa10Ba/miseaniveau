@@ -32,8 +32,6 @@ class ApprenantVoter extends Voter
         switch ($attribute) {
             case 'EDIT':
                 return ($user==$subject || $user instanceof Formateur);
-                // logic to determine if the user can EDIT
-                // return true or false
                 break;
             case 'VIEW':
                  return ($user==$subject || $user instanceof Formateur || $user instanceof CM);

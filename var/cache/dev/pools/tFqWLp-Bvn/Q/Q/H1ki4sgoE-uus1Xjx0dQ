@@ -26,6 +26,12 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     'utilisateurs' => $o[4],
                 ],
             ],
+            'groups' => [
+                2 => [
+                    'profilRead',
+                    'profilWrite',
+                ],
+            ],
         ],
     ],
     $o[0],

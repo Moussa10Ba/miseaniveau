@@ -148,6 +148,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             ],
             'attributes' => [
                 [
+                    'pagination_items_per_page' => 3,
                     'normalization_context' => [
                         'groups' => [
                             'profilSortieRead',

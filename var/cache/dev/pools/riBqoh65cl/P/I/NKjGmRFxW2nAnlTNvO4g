@@ -2,7 +2,8 @@
 
 return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
     $o = [
-        clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
+        clone ($p['ApiPlatform\\Core\\Annotation\\ApiResource'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiResource')),
     ],
     null,
     [
@@ -10,10 +11,51 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             'repositoryClass' => [
                 'App\\Repository\\ProfilSortieRepository',
             ],
+            'collectionOperations' => [
+                1 => [
+                    'post' => [
+                        'security' => '(is_granted(\'ROLE_ADMIN\') or is_granted(\'ROLE_Formateur\'))',
+                        'security_message' => 'Acces Denied',
+                    ],
+                    'get' => [
+                        'security' => '(is_granted(\'ROLE_ADMIN\') or is_granted(\'ROLE_Formateur\') or is_granted(\'ROLE_CM\'))',
+                        'security_message' => 'Acces Denied',
+                    ],
+                ],
+            ],
+            'itemOperations' => [
+                1 => [
+                    'put' => [
+                        'security' => '(is_granted(\'ROLE_ADMIN\') or is_granted(\'ROLE_Formateur\'))',
+                        'security_message' => 'Acces Denied',
+                    ],
+                    'get' => [
+                        'security' => '(is_granted(\'ROLE_ADMIN\') or is_granted(\'ROLE_CM\') or is_granted(\'ROLE_Formateur\'))',
+                        'security_message' => 'Acces Denied',
+                    ],
+                ],
+            ],
+            'attributes' => [
+                1 => [
+                    'pagination_items_per_page' => 3,
+                    'normalization_context' => [
+                        'groups' => [
+                            'profilSortieRead',
+                        ],
+                    ],
+                    'denormalization_context' => [
+                        'groups' => [
+                            'profiSortielWrite',
+                        ],
+                    ],
+                    'route_prefix' => 'admin',
+                ],
+            ],
         ],
     ],
     [
         $o[0],
+        $o[1],
     ],
     []
 ); }];

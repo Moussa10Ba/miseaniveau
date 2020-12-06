@@ -28,9 +28,12 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             ],
             'itemOperations' => [
                 1 => [
-                    'put' => [
+                    'updateApprenant' => [
                         'security' => 'is_granted(\'EDIT\', object)',
                         'security_message' => 'Acces Denied',
+                        'method' => 'PUT',
+                        'path' => 'apprennants/{id}',
+                        'controller' => 'App\\Controller\\UtilisateurController::updateUser',
                     ],
                     'get' => [
                         'security' => 'is_granted(\'VIEW\',object)',
@@ -42,7 +45,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 1 => [
                     'normalization_context' => [
                         'groups' => [
-                            'apprenantsRead',
+                            'apprenantsRead,userRead',
                         ],
                     ],
                     'denormalization_context' => [

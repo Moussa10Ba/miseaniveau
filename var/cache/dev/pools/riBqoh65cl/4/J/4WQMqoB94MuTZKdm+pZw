@@ -4,18 +4,71 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
     $o = [
         clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['ApiPlatform\\Core\\Annotation\\ApiResource'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiResource')),
         clone ($p['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
+        clone ($p['Symfony\\Bridge\\Doctrine\\Validator\\Constraints\\UniqueEntity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Bridge\\Doctrine\\Validator\\Constraints\\UniqueEntity')),
     ],
     null,
     [
         'stdClass' => [
+            'collectionOperations' => [
+                [
+                    'get',
+                    'saveGroupeCompetence' => [
+                        'method' => 'POST',
+                        'path' => '/groupe_competences',
+                        'controller' => 'App/Controller/GroupeCompetenceController::saveGroupeCompetence',
+                    ],
+                ],
+            ],
+            'itemOperations' => [
+                [
+                    'get',
+                    'updateGroupeCompetence' => [
+                        'method' => 'PUT',
+                        'path' => '/groupe_competences/{id}',
+                        'controller' => 'App/Controller/GroupeCompetenceController::updateGroupeCompetence',
+                    ],
+                ],
+            ],
+            'attributes' => [
+                [
+                    'pagination_items_per_page' => 3,
+                    'security' => 'is_granted(\'ROLE_ADMIN\' or is_granted(\'ROLE_CM\') or is_granted(\'ROLE_Formateur\'))',
+                    'security_message' => 'Acces Denied',
+                    'denormalization_context' => [
+                        'groups' => [
+                            'groupeCompetenceWrite',
+                        ],
+                    ],
+                    'normalization_context' => [
+                        'groups' => [
+                            'groupeCompetenceRead',
+                        ],
+                    ],
+                    'route_prefix' => '/admin',
+                ],
+            ],
             'repositoryClass' => [
                 1 => 'App\\Repository\\GroupeCompetenceRepository',
+            ],
+            'message' => [
+                2 => 'Cette competence existe deja',
+            ],
+            'fields' => [
+                2 => [
+                    'libelle',
+                ],
+            ],
+            'groups' => [
+                2 => [
+                    'Default',
+                ],
             ],
         ],
     ],
     [
         $o[0],
         $o[1],
+        $o[2],
     ],
     []
 ); }];

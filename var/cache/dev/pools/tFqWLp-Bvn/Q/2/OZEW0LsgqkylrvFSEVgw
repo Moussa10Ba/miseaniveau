@@ -7,6 +7,9 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
         clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
         clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
         clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
     ],
     null,
     [
@@ -17,6 +20,9 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 'libelle',
                 'descriptif',
                 'archive',
+                'groupeCompetences',
+                'niveau',
+                'competenceValides',
             ],
             'attributesMetadata' => [
                 [
@@ -24,6 +30,34 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     'libelle' => $o[2],
                     'descriptif' => $o[3],
                     'archive' => $o[4],
+                    'groupeCompetences' => $o[5],
+                    'niveau' => $o[6],
+                    'competenceValides' => $o[7],
+                ],
+            ],
+            'groups' => [
+                1 => [
+                    'competenceRead',
+                    'competenceWrite',
+                    'referentielGroupeCompetenceCompetenceRead',
+                ],
+                [
+                    'competenceRead',
+                    'groupeCompetenceRead',
+                    'competenceWrite',
+                    'referentielGroupeCompetenceCompetenceRead',
+                ],
+                [
+                    'competenceRead',
+                    'groupeCompetenceRead',
+                    'competenceWrite',
+                    'referentielGroupeCompetenceCompetenceRead',
+                ],
+                [
+                    'competenceRead',
+                    'groupeCompetenceRead',
+                    'competenceWrite',
+                    'referentielGroupeCompetenceCompetenceRead',
                 ],
             ],
         ],

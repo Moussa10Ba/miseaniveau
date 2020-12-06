@@ -9,6 +9,8 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
         'ApiPlatform\\Core\\Metadata\\Resource\\ResourceNameCollection' => [
             'classes' => [
                 [
+                    'App\\Entity\\CompetenceValides',
+                    'App\\Entity\\Promo',
                     'App\\Entity\\GroupeCompetence',
                     'App\\Entity\\Formateur',
                     'App\\Entity\\Utilisateur',
@@ -17,7 +19,9 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     'App\\Entity\\Niveau',
                     'App\\Entity\\Profil',
                     'App\\Entity\\ProfilSortie',
+                    'App\\Entity\\GroupePromo',
                     'App\\Entity\\Competence',
+                    'App\\Entity\\Referentiel',
                 ],
             ],
         ],

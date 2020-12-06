@@ -51,10 +51,6 @@ class UserService
 
         return $user;
 
-
-
-
-
     }
     public function givePassword($randoPassword="passer"){
         //return $randoPassword.rand(10,10000);
@@ -69,7 +65,7 @@ class UserService
             ->setFrom('testermail889@gmail.com')
             ->setTo($mail)
             ->setBody(
-                'Utilisez ce mot passe pour acceder a votre compte et changer le apres connexion 
+                'Utilisez ce mot passe pour acceder a votre compte et puis le changer immediatement
                 '.$password
                 );
 
@@ -81,6 +77,23 @@ class UserService
             return $errors;
         }
         dd($request);
+    }
+    public function transformData($getContent){
+        $array=[];
+        $data=preg_split("/form-data; /",$getContent);
+        // suprimer le premier element du tab
+        unset($data[0]);
+        foreach ($data as $value){
+            //Enlever le retour chariot et le retour à la ligne
+            $arraySecond= preg_split("/\r\n/",$value);
+            array_pop($arraySecond);
+            array_pop($arraySecond);
+            $key = explode('"',$arraySecond[0]);
+            $key=$key[1];
+            $array[$key]= end($arraySecond);
+
+        }
+            return $array;
     }
 }
 

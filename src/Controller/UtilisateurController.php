@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Utilisateur;
+use App\Repository\UtilisateurRepository;
 use App\Service\UserService;
 use Doctrine\ORM\EntityManagerInterface;
 use http\Client\Curl\User;
@@ -55,8 +56,24 @@ class UtilisateurController extends AbstractController
      * @Route("/api/admin/users/{id}", name="updateUser", methods={"PUT"})
      * @Route("/api/apprenants/{id}", name="updateApprenant", methods={"PUT"})
      */
-    public function updateUser(Request $request, $id){
-        $data=$request->request->all();
-        dd($data);
+    public function updateUser(Request $request, $id,UtilisateurRepository $userRepo){
+        $userRecup=$userRepo->findOneBy(['id'=>$id]);
+        $data=$request->getContent();
+        $dataGot=[];
+       $dataGot[]= $this->userService->transformData($data);
+       if (isset($dataGot['photo'])){
+            $photo = fopen('php://momory','r+');
+            fwrite($photo,$dataGot['photo']);
+            rewind($photo);
+       }
+       foreach ($dataGot as $key => $value){
+           $method = 'set'.ucfirst($key);
+           if (method_exists($userRecup,$method)){
+               $userRecup->$method($value);
+           }
+       }
+        $this->em->persist($userRecup);
+       $this->em->flush();
+       return $this->json(['message'=>'succes'],201);
     }
 }

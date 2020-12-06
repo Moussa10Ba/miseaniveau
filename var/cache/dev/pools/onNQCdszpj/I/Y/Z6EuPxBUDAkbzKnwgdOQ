@@ -16,6 +16,10 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             'itemOperations' => [
                 [
                     'get' => [
+                        'security' => '(is_granted(\'ROLE_ADMIN) or is_granted(\'ROLE_CM\') or is_grated(\'ROLE_Formateur\'))',
+                        'seccurity_message' => 'Acces Denied',
+                        'input' => null,
+                        'output' => null,
                         'method' => 'GET',
                         'input_formats' => [
                             'jsonld' => [
@@ -40,33 +44,14 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                             ],
                         ],
                     ],
-                    'delete' => [
-                        'method' => 'DELETE',
-                        'input_formats' => [
-                            'jsonld' => [
-                                'application/ld+json',
-                            ],
-                            'json' => [
-                                'application/json',
-                            ],
-                            'html' => [
-                                'text/html',
-                            ],
-                        ],
-                        'output_formats' => [
-                            'jsonld' => [
-                                'application/ld+json',
-                            ],
-                            'json' => [
-                                'application/json',
-                            ],
-                            'html' => [
-                                'text/html',
-                            ],
-                        ],
-                    ],
-                    'put' => [
+                    'updateCompetencee' => [
+                        'security' => '(is_granted(\'ROLE_ADMIN\'))',
                         'method' => 'PUT',
+                        'Security_message' => 'Seul un admin peut Modifier des comptetences',
+                        'path' => '/competences/{id}',
+                        'controller' => 'App/Controller/CompetenceController::updateCompetence',
+                        'input' => null,
+                        'output' => null,
                         'input_formats' => [
                             'jsonld' => [
                                 'application/ld+json',
@@ -76,25 +61,6 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                             ],
                             'html' => [
                                 'text/html',
-                            ],
-                        ],
-                        'output_formats' => [
-                            'jsonld' => [
-                                'application/ld+json',
-                            ],
-                            'json' => [
-                                'application/json',
-                            ],
-                            'html' => [
-                                'text/html',
-                            ],
-                        ],
-                    ],
-                    'patch' => [
-                        'method' => 'PATCH',
-                        'input_formats' => [
-                            'json' => [
-                                'application/merge-patch+json',
                             ],
                         ],
                         'output_formats' => [
@@ -114,6 +80,10 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             'collectionOperations' => [
                 [
                     'get' => [
+                        'security' => '(is_granted(\'ROLE_ADMIN\') or is_granted(\'ROLE_CM\') or is_granted(\'ROLE_Formateur\'))',
+                        'seccurity_message' => 'Acces Denied',
+                        'input' => null,
+                        'output' => null,
                         'method' => 'GET',
                         'input_formats' => [
                             'jsonld' => [
@@ -138,8 +108,14 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                             ],
                         ],
                     ],
-                    'post' => [
+                    'addCompetence' => [
+                        'security' => '(is_granted(\'ROLE_ADMIN\'))',
+                        'Security_message' => 'Seul un admin peut ajouter des comptetences',
                         'method' => 'POST',
+                        'path' => '/competences',
+                        'controller' => 'App/Controller/CompetenceController::addCompetence',
+                        'input' => null,
+                        'output' => null,
                         'input_formats' => [
                             'jsonld' => [
                                 'application/ld+json',
@@ -176,6 +152,18 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             ],
             'attributes' => [
                 [
+                    'pagination_items_per_page' => 3,
+                    'denormalization_context' => [
+                        'groups' => [
+                            'competenceWrite',
+                        ],
+                    ],
+                    'normalization_context' => [
+                        'groups' => [
+                            'competenceRead',
+                        ],
+                    ],
+                    'route_prefix' => '/admin',
                     'input' => null,
                     'output' => null,
                 ],

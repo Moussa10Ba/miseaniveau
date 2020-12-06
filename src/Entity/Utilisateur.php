@@ -49,6 +49,7 @@ class Utilisateur implements UserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups("userRead");
+     * @Groups("getApprenantGroupePrincipalRead")
      */
     protected $id;
 
@@ -57,6 +58,7 @@ class Utilisateur implements UserInterface
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      * @Groups({"userRead","userWrite"})
+     * @Groups("getApprenantGroupePrincipalRead")
      */
     protected $nom;
 
@@ -64,6 +66,7 @@ class Utilisateur implements UserInterface
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      * @Groups({"userRead","userWrite"})
+     * @Groups("getApprenantGroupePrincipalRead")
      */
     protected $prenom;
 
@@ -74,6 +77,7 @@ class Utilisateur implements UserInterface
      * @Assert\Email(
      *     message = "The email '{{ value }}' is not a valid email."
      * )
+     * @Groups("getApprenantGroupePrincipalRead")
      */
     protected $email;
 

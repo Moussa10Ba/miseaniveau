@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\ProfilSortieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -14,8 +15,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ApiResource(
  *     normalizationContext={"groups"={"profilSortieRead"}},
  *     denormalizationContext={"groups"={"profiSortielWrite"}},
- *    routePrefix="admin",
- *  collectionOperations={
+ *   attributes={
+ *      "pagination_items_per_page"=3,
+ *      },
+ *      routePrefix="admin",
+ *      collectionOperations={
  *      "post"={
  *          "security"="(is_granted('ROLE_ADMIN') or is_granted('ROLE_Formateur'))",
  *          "security_message"="Acces Denied",
@@ -58,13 +62,20 @@ class ProfilSortie
     private $libelleProfilSortie;
 
     /**
+     * @ApiSubresource()
      * @ORM\OneToMany(targetEntity=Apprenant::class, mappedBy="profilSortie")
      */
     private $apprenants;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Promo::class, mappedBy="profilsorties")
+     */
+    private $promos;
+
     public function __construct()
     {
         $this->apprenants = new ArrayCollection();
+        $this->promos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -109,6 +120,33 @@ class ProfilSortie
             if ($apprenant->getProfilSortie() === $this) {
                 $apprenant->setProfilSortie(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Promo[]
+     */
+    public function getPromos(): Collection
+    {
+        return $this->promos;
+    }
+
+    public function addPromo(Promo $promo): self
+    {
+        if (!$this->promos->contains($promo)) {
+            $this->promos[] = $promo;
+            $promo->addProfilsorty($this);
+        }
+
+        return $this;
+    }
+
+    public function removePromo(Promo $promo): self
+    {
+        if ($this->promos->removeElement($promo)) {
+            $promo->removeProfilsorty($this);
         }
 
         return $this;

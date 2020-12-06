@@ -5,10 +5,17 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\NiveauRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
  * @ORM\Entity(repositoryClass=NiveauRepository::class)
+ * @ApiResource(
+ *   denormalizationContext={"groups"={"niveauWrite"}},
+ *   normalizationContext={"groups"={"niveauRead"}},
+ *  attributes={
+ *     "pagination_items_per_page"=3,
+ *     },
+ * )
  */
 class Niveau
 {
@@ -21,13 +28,21 @@ class Niveau
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"niveauRead","niveauWrite","competenceRead","competenceWRite"})
      */
     private $libelle;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"niveauRead","niveauWrite","competenceRead","competenceWRite"})
      */
     private $critereDeval;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Competence::class, inversedBy="niveau")
+     */
+    private $competence;
+
 
     public function getId(): ?int
     {
@@ -57,4 +72,18 @@ class Niveau
 
         return $this;
     }
+
+    public function getCompetence(): ?Competence
+    {
+        return $this->competence;
+    }
+
+    public function setCompetence(?Competence $competence): self
+    {
+        $this->competence = $competence;
+
+        return $this;
+    }
+
+
 }
