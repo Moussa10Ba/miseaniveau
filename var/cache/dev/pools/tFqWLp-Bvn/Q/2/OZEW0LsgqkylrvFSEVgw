@@ -9,7 +9,6 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
         clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
         clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
         clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
-        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
     ],
     null,
     [
@@ -18,7 +17,6 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 'App\\Entity\\Competence',
                 'id',
                 'libelle',
-                'descriptif',
                 'archive',
                 'groupeCompetences',
                 'niveau',
@@ -28,11 +26,10 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 [
                     'id' => $o[1],
                     'libelle' => $o[2],
-                    'descriptif' => $o[3],
-                    'archive' => $o[4],
-                    'groupeCompetences' => $o[5],
-                    'niveau' => $o[6],
-                    'competenceValides' => $o[7],
+                    'archive' => $o[3],
+                    'groupeCompetences' => $o[4],
+                    'niveau' => $o[5],
+                    'competenceValides' => $o[6],
                 ],
             ],
             'groups' => [
@@ -46,18 +43,18 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     'groupeCompetenceRead',
                     'competenceWrite',
                     'referentielGroupeCompetenceCompetenceRead',
+                    'groupeCompetenceWrite',
                 ],
                 [
                     'competenceRead',
                     'groupeCompetenceRead',
                     'competenceWrite',
                     'referentielGroupeCompetenceCompetenceRead',
+                    'groupeCompetenceWrite',
                 ],
-                [
+                5 => [
                     'competenceRead',
-                    'groupeCompetenceRead',
                     'competenceWrite',
-                    'referentielGroupeCompetenceCompetenceRead',
                 ],
             ],
         ],

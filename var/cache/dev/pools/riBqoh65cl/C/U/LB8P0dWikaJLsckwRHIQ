@@ -27,7 +27,10 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             ],
             'itemOperations' => [
                 1 => [
-                    'get',
+                    'get_id' => [
+                        'method' => 'GET',
+                        'path' => 'formateurs/{id}',
+                    ],
                     'put',
                     'delete',
                 ],

@@ -26,15 +26,10 @@ class Niveau
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups({"niveauRead","niveauWrite","competenceRead","competenceWRite"})
-     */
-    private $libelle;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"niveauRead","niveauWrite","competenceRead","competenceWRite"})
+     * @Groups({"niveauRead","niveauWrite","competenceRead","competenceWrite"})
      */
     private $critereDeval;
 
@@ -43,23 +38,18 @@ class Niveau
      */
     private $competence;
 
+    /**
+     * @ORM\Column(type="text")
+     * @Groups({"niveauRead","niveauWrite","competenceRead","competenceWrite"})
+     */
+    private $groupeDaction;
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getLibelle(): ?string
-    {
-        return $this->libelle;
-    }
-
-    public function setLibelle(string $libelle): self
-    {
-        $this->libelle = $libelle;
-
-        return $this;
-    }
 
     public function getCritereDeval(): ?string
     {
@@ -81,6 +71,18 @@ class Niveau
     public function setCompetence(?Competence $competence): self
     {
         $this->competence = $competence;
+
+        return $this;
+    }
+
+    public function getGroupeDaction(): ?string
+    {
+        return $this->groupeDaction;
+    }
+
+    public function setGroupeDaction(string $groupeDaction): self
+    {
+        $this->groupeDaction = $groupeDaction;
 
         return $this;
     }

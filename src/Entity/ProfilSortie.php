@@ -16,13 +16,14 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     normalizationContext={"groups"={"profilSortieRead"}},
  *     denormalizationContext={"groups"={"profiSortielWrite"}},
  *   attributes={
- *      "pagination_items_per_page"=3,
+ *      "pagination_items_per_page"=5,
  *      },
  *      routePrefix="admin",
  *      collectionOperations={
  *      "post"={
  *          "security"="(is_granted('ROLE_ADMIN') or is_granted('ROLE_Formateur'))",
  *          "security_message"="Acces Denied",
+ *          "denormalization_context"={"groups"={"profiSortielWrite"}},
  *             },
  *       "get"={
  *          "security"="(is_granted('ROLE_ADMIN') or is_granted('ROLE_Formateur') or is_granted('ROLE_CM'))",
@@ -41,7 +42,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *          "put"={
  *          "security"="(is_granted('ROLE_ADMIN') or is_granted('ROLE_Formateur'))",
  *          "security_message"="Acces Denied",
- * }
+ *          },
+ *         "delete"={
+ *          "security"="(is_granted('ROLE_ADMIN') or is_granted('ROLE_Formateur'))",
+ *          "security_message"="Acces Denied",
+ *          },
  *     },
  *
  * )
@@ -52,12 +57,13 @@ class ProfilSortie
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"profilSortieRead","apprenantsRead","userRead"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"profilSortieRead","apprenantsRead","userRead"})
+     * @Groups({"profilSortieRead","apprenantsRead","userRead", "profiSortielWrite"})
      */
     private $libelleProfilSortie;
 

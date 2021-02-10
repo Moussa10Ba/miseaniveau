@@ -9,11 +9,11 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
         'ApiPlatform\\Core\\Metadata\\Property\\PropertyNameCollection' => [
             'properties' => [
                 [
-                    'id',
                     'specialite',
                     'groupePromos',
                     'promos',
                     'plainPassword',
+                    'id',
                     'nom',
                     'prenom',
                     'email',

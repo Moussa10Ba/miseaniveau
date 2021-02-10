@@ -11,10 +11,11 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 [
                     'id',
                     'libelle',
-                    'programme',
                     'critereDev',
                     'promo',
                     'groupeCompetence',
+                    'programme',
+                    'critereDad',
                 ],
             ],
         ],

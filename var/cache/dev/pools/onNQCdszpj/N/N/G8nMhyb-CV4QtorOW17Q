@@ -179,12 +179,13 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                             ],
                         ],
                     ],
-                    'add_Referentiel' => [
+                    'addReferentiel' => [
                         'method' => 'POST',
-                        'path' => '/referentiels',
-                        'denormalization_context' => [
+                        'path' => '/referentiel/add',
+                        'controller' => 'App\\Controller\\ReferentielController::addReferentiel',
+                        'normalization_context' => [
                             'groups' => [
-                                'referentielGroupeCompetenceWrite',
+                                'referentielGroupeCompetenceCompetenceRead',
                             ],
                         ],
                         'input' => null,

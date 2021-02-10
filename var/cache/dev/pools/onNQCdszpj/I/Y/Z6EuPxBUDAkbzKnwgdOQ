@@ -152,7 +152,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             ],
             'attributes' => [
                 [
-                    'pagination_items_per_page' => 3,
+                    'pagination_items_per_page' => 15,
                     'denormalization_context' => [
                         'groups' => [
                             'competenceWrite',

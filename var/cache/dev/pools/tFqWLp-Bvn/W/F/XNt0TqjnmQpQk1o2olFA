@@ -14,16 +14,16 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             'name' => [
                 'App\\Entity\\Niveau',
                 'id',
-                'libelle',
                 'critereDeval',
                 'competence',
+                'groupeDaction',
             ],
             'attributesMetadata' => [
                 [
                     'id' => $o[1],
-                    'libelle' => $o[2],
-                    'critereDeval' => $o[3],
-                    'competence' => $o[4],
+                    'critereDeval' => $o[2],
+                    'competence' => $o[3],
+                    'groupeDaction' => $o[4],
                 ],
             ],
             'groups' => [
@@ -31,13 +31,13 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     'niveauRead',
                     'niveauWrite',
                     'competenceRead',
-                    'competenceWRite',
+                    'competenceWrite',
                 ],
-                [
+                4 => [
                     'niveauRead',
                     'niveauWrite',
                     'competenceRead',
-                    'competenceWRite',
+                    'competenceWrite',
                 ],
             ],
         ],

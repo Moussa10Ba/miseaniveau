@@ -40,6 +40,31 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                             ],
                         ],
                     ],
+                    'delete' => [
+                        'method' => 'DELETE',
+                        'input_formats' => [
+                            'jsonld' => [
+                                'application/ld+json',
+                            ],
+                            'json' => [
+                                'application/json',
+                            ],
+                            'html' => [
+                                'text/html',
+                            ],
+                        ],
+                        'output_formats' => [
+                            'jsonld' => [
+                                'application/ld+json',
+                            ],
+                            'json' => [
+                                'application/json',
+                            ],
+                            'html' => [
+                                'text/html',
+                            ],
+                        ],
+                    ],
                     'updateGroupeCompetence' => [
                         'method' => 'PUT',
                         'path' => '/groupe_competences/{id}',
@@ -140,9 +165,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             ],
             'attributes' => [
                 [
-                    'pagination_items_per_page' => 3,
-                    'security' => 'is_granted(\'ROLE_ADMIN\' or is_granted(\'ROLE_CM\') or is_granted(\'ROLE_Formateur\'))',
-                    'security_message' => 'Acces Denied',
+                    'pagination_items_per_page' => 10,
                     'denormalization_context' => [
                         'groups' => [
                             'groupeCompetenceWrite',

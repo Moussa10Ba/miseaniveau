@@ -25,10 +25,10 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
         'stdClass' => [
             'name' => [
                 'App\\Entity\\Formateur',
-                'id',
                 'specialite',
                 'groupePromos',
                 'promos',
+                'id',
                 'nom',
                 'prenom',
                 'email',
@@ -44,10 +44,10 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             ],
             'attributesMetadata' => [
                 [
-                    'id' => $o[1],
-                    'specialite' => $o[2],
-                    'groupePromos' => $o[3],
-                    'promos' => $o[4],
+                    'specialite' => $o[1],
+                    'groupePromos' => $o[2],
+                    'promos' => $o[3],
+                    'id' => $o[4],
                     'nom' => $o[5],
                     'prenom' => $o[6],
                     'email' => $o[7],
@@ -65,17 +65,16 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             'groups' => [
                 1 => [
                     'get_promo_ref_formaRead',
+                    'getApprenantGroupePrincipalRead',
+                ],
+                [
+                    'getApprenantGroupePrincipalRead',
+                ],
+                4 => [
                     'userRead',
                     'getApprenantGroupePrincipalRead',
                 ],
                 [
-                    'get_promo_ref_formaRead',
-                    'getApprenantGroupePrincipalRead',
-                ],
-                [
-                    'getApprenantGroupePrincipalRead',
-                ],
-                5 => [
                     'userRead',
                     'userWrite',
                     'getApprenantGroupePrincipalRead',
@@ -99,6 +98,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 ],
                 [
                     'userRead',
+                    'userWrite',
                 ],
                 [
                     'userRead',

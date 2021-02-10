@@ -12,15 +12,17 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
+// *        "security"="is_granted('ROLE_ADMIN' or is_granted('ROLE_CM') or is_granted('ROLE_Formateur'))",
+ //         "security_message"="Acces Denied",
+
+
 /**
  * @ApiResource(
  *     denormalizationContext={"groups"={"groupeCompetenceWrite"}},
  *     normalizationContext={"groups"={"groupeCompetenceRead"}},
  *     routePrefix="/admin",
  *     attributes={
- *          "pagination_items_per_page"=3,
- *          "security"="is_granted('ROLE_ADMIN' or is_granted('ROLE_CM') or is_granted('ROLE_Formateur'))",
- *          "security_message"="Acces Denied",
+ *          "pagination_items_per_page"=10,
  *     },
  * collectionOperations={
  *    "get",
@@ -31,7 +33,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * },
  * },
  *  itemOperations={
- *     "get",
+ *     "get", "delete",
  *     "updateGroupeCompetence"={
  *          "method"="PUT",
  *          "path"="/groupe_competences/{id}",
@@ -56,6 +58,7 @@ class GroupeCompetence
      * @Groups("referentielGroupeCompetenceRead")
      * @Groups("referentielGroupeCompetenceCompetenceRead")
      * @Groups("referentielGroupeCompetenceWrite")
+     * @Groups("groupeCompetenceRead")
      */
     private $id;
 
@@ -65,6 +68,8 @@ class GroupeCompetence
      * @Groups("referentielGroupeCompetenceRead")
      * @Groups("referentielGroupeCompetenceCompetenceRead")
      * @Groups("referentielGroupeCompetenceWrite")
+     * @Groups("groupeCompetenceRead")
+     * @Groups("groupeCompetenceWrite")
      */
     private $libelle;
 
@@ -74,6 +79,8 @@ class GroupeCompetence
      * @Groups("referentielGroupeCompetenceRead")
      * @Groups("referentielGroupeCompetenceCompetenceRead")
      * @Groups("referentielGroupeCompetenceWrite")
+     * @Groups("groupeCompetenceRead")
+     * @Groups("groupeCompetenceWrite")
      */
     private $descriptif;
 
@@ -81,6 +88,8 @@ class GroupeCompetence
      * @ApiSubresource()
      * @ORM\ManyToMany(targetEntity=Competence::class, inversedBy="groupeCompetences")
      * @Groups("referentielGroupeCompetenceCompetenceRead")
+     * @Groups("groupeCompetenceRead")
+     * @Groups("groupeCompetenceWrite")
      */
     private $competences;
 

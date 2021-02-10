@@ -16,6 +16,11 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     'post' => [
                         'security' => '(is_granted(\'ROLE_ADMIN\') or is_granted(\'ROLE_Formateur\'))',
                         'security_message' => 'Acces Denied',
+                        'denormalization_context' => [
+                            'groups' => [
+                                'profiSortielWrite',
+                            ],
+                        ],
                     ],
                     'get' => [
                         'security' => '(is_granted(\'ROLE_ADMIN\') or is_granted(\'ROLE_Formateur\') or is_granted(\'ROLE_CM\'))',
@@ -33,11 +38,15 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                         'security' => '(is_granted(\'ROLE_ADMIN\') or is_granted(\'ROLE_CM\') or is_granted(\'ROLE_Formateur\'))',
                         'security_message' => 'Acces Denied',
                     ],
+                    'delete' => [
+                        'security' => '(is_granted(\'ROLE_ADMIN\') or is_granted(\'ROLE_Formateur\'))',
+                        'security_message' => 'Acces Denied',
+                    ],
                 ],
             ],
             'attributes' => [
                 1 => [
-                    'pagination_items_per_page' => 3,
+                    'pagination_items_per_page' => 5,
                     'normalization_context' => [
                         'groups' => [
                             'profilSortieRead',

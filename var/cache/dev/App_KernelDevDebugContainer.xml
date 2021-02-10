@@ -563,6 +563,7 @@
     <service id="App\Security\Voter\FormateurVoter" class="App\Security\Voter\FormateurVoter" autowire="true" autoconfigure="true">
       <tag name="security.voter"/>
     </service>
+    <service id="App\Service\ReferentielService" class="App\Service\ReferentielService" autowire="true" autoconfigure="true"/>
     <service id="App\Service\UserService" class="App\Service\UserService" autowire="true" autoconfigure="true">
       <argument type="service" id="security.user_password_encoder.generic"/>
       <argument type="service" id="serializer"/>
@@ -5520,10 +5521,17 @@
         <argument key="repository" type="service" id="App\Repository\CompetenceRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.IFW.IA7" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.0rsj7a8" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="em" type="service" id="doctrine.orm.default_entity_manager"/>
+        <argument key="gCrepo" type="service" id="App\Repository\GroupeCompetenceRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.FwI3BbT" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="compRepo" type="service" id="App\Repository\CompetenceRepository"/>
       </argument>
     </service>
     <service id=".service_locator.2c5Gf0K" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -5532,18 +5540,28 @@
         <argument key="profilRepo" type="service" id="App\Repository\ProfilRepository"/>
       </argument>
     </service>
+    <service id=".service_locator.uGwUuKZ" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="manager" type="service" id="doctrine.orm.default_entity_manager"/>
+        <argument key="refser" type="service" id="App\Service\ReferentielService"/>
+        <argument key="serializer" type="service" id="serializer"/>
+      </argument>
+    </service>
     <service id=".service_locator.75QI9vP" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="userRepo" type="service" id="App\Repository\UtilisateurRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.edVLLWf" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.Gbxm_pp" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="App\Controller\CompetenceController::AddCompetence" type="service" id=".service_locator.IFW.IA7"/>
+        <argument key="App\Controller\CompetenceController::AddCompetence" type="service" id=".service_locator.0rsj7a8"/>
         <argument key="App\Controller\CompetenceController::updateCompetence" type="service" id=".service_locator.jJBF8o1"/>
+        <argument key="App\Controller\GroupeCompetenceController::saveGroupeCompetence" type="service" id=".service_locator.FwI3BbT"/>
         <argument key="App\Controller\ProfilController::getListUserByProfil" type="service" id=".service_locator.2c5Gf0K"/>
+        <argument key="App\Controller\ReferentielController::addReferentiel" type="service" id=".service_locator.uGwUuKZ"/>
         <argument key="App\Controller\UtilisateurController::updateUser" type="service" id=".service_locator.75QI9vP"/>
         <argument key="App\Kernel::loadRoutes" type="service" id=".service_locator.C9JCBPC"/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service" id=".service_locator.C9JCBPC"/>
@@ -5551,9 +5569,11 @@
         <argument key="kernel::loadRoutes" type="service" id=".service_locator.C9JCBPC"/>
         <argument key="kernel::registerContainerConfiguration" type="service" id=".service_locator.C9JCBPC"/>
         <argument key="kernel::terminate" type="service" id=".service_locator.beq5mCo"/>
-        <argument key="App\Controller\CompetenceController:AddCompetence" type="service" id=".service_locator.IFW.IA7"/>
+        <argument key="App\Controller\CompetenceController:AddCompetence" type="service" id=".service_locator.0rsj7a8"/>
         <argument key="App\Controller\CompetenceController:updateCompetence" type="service" id=".service_locator.jJBF8o1"/>
+        <argument key="App\Controller\GroupeCompetenceController:saveGroupeCompetence" type="service" id=".service_locator.FwI3BbT"/>
         <argument key="App\Controller\ProfilController:getListUserByProfil" type="service" id=".service_locator.2c5Gf0K"/>
+        <argument key="App\Controller\ReferentielController:addReferentiel" type="service" id=".service_locator.uGwUuKZ"/>
         <argument key="App\Controller\UtilisateurController:updateUser" type="service" id=".service_locator.75QI9vP"/>
         <argument key="kernel:loadRoutes" type="service" id=".service_locator.C9JCBPC"/>
         <argument key="kernel:registerContainerConfiguration" type="service" id=".service_locator.C9JCBPC"/>
@@ -5951,12 +5971,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.edVLLWf"/>
+      <argument type="service" id=".service_locator.Gbxm_pp"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.edVLLWf"/>
+      <argument type="service" id=".service_locator.Gbxm_pp"/>
     </service>
     <service id="api_platform.swagger.normalizer.api_gateway.inner" class="ApiPlatform\Core\Swagger\Serializer\DocumentationNormalizer" public="false">
       <argument type="service" id="api_platform.metadata.resource.metadata_factory.cached"/>
@@ -6386,7 +6406,7 @@
     <service id="mailer" alias="swiftmailer.mailer.default" public="true"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.WaGDpDt" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.edVLLWf"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.Gbxm_pp"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="api_platform.name_converter" alias="serializer.name_converter.metadata_aware"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>

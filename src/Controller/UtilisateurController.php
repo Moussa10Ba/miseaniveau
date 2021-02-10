@@ -32,16 +32,20 @@ class UtilisateurController extends AbstractController
     /**
      * @Route("/api/apprenants", name="addApprennant", methods={"POST"})
      * @Route("/api/formateurs", name="addFormateur", methods={"POST"})
+     * @Route("/api/admin/utilisateurs/add", name="addUtilisateur", methods={"POST"})
      */
     public function addUser(Request $request)
     {
-
+    
         if (!$this->isGranted('ROLE_ADMIN'))
         {
             return $this->json(["message"=>"Acces Refuse"],Response::HTTP_BAD_REQUEST);
         }
+       
+    
         $user=$this->userService->addUser($request);
-        //dd($user);
+       
+    
         if (!($user instanceof Utilisateur)){
             return new JsonResponse($user,Response::HTTP_BAD_REQUEST);
         }

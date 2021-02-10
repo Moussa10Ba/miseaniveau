@@ -2,37 +2,21 @@
 
 return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
     $o = [
-        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Column'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Column')),
-        clone ($p['Symfony\\Component\\Serializer\\Annotation\\Groups'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Serializer\\Annotation\\Groups')),
-        clone $p['Symfony\\Component\\Serializer\\Annotation\\Groups'],
-        clone $p['Symfony\\Component\\Serializer\\Annotation\\Groups'],
+        clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\Column'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Column')),
     ],
     null,
     [
         'stdClass' => [
-            'length' => [
-                255,
+            'type' => [
+                'blob',
             ],
-        ],
-        'Symfony\\Component\\Serializer\\Annotation\\Groups' => [
-            'groups' => [
-                1 => [
-                    'referentielGroupeCompetenceRead',
-                ],
-                [
-                    'referentielGroupeCompetenceCompetenceRead',
-                ],
-                [
-                    'referentielGroupeCompetenceWrite',
-                ],
+            'nullable' => [
+                true,
             ],
         ],
     ],
     [
         $o[0],
-        $o[1],
-        $o[2],
-        $o[3],
     ],
     []
 ); }];

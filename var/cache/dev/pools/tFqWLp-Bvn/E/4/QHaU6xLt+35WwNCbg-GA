@@ -9,6 +9,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
         clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
         clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
         clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
     ],
     null,
     [
@@ -17,19 +18,21 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 'App\\Entity\\Referentiel',
                 'id',
                 'libelle',
-                'programme',
                 'critereDev',
                 'promo',
                 'groupeCompetence',
+                'programme',
+                'critereDad',
             ],
             'attributesMetadata' => [
                 [
                     'id' => $o[1],
                     'libelle' => $o[2],
-                    'programme' => $o[3],
-                    'critereDev' => $o[4],
-                    'promo' => $o[5],
-                    'groupeCompetence' => $o[6],
+                    'critereDev' => $o[3],
+                    'promo' => $o[4],
+                    'groupeCompetence' => $o[5],
+                    'programme' => $o[6],
+                    'critereDad' => $o[7],
                 ],
             ],
             'groups' => [
@@ -47,12 +50,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     'referentielGroupeCompetenceCompetenceRead',
                     'referentielGroupeCompetenceWrite',
                 ],
-                [
-                    'referentielGroupeCompetenceRead',
-                    'referentielGroupeCompetenceCompetenceRead',
-                    'referentielGroupeCompetenceWrite',
-                ],
-                6 => [
+                5 => [
                     'referentielGroupeCompetenceRead',
                     'referentielGroupeCompetenceCompetenceRead',
                     'referentielGroupeCompetenceWrite',

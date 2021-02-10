@@ -21,7 +21,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     denormalizationContext={"groups"={"competenceWrite"}},
  *     normalizationContext={"groups"={"competenceRead"}},
  *     attributes={
- *      "pagination_items_per_page"=3,
+ *      "pagination_items_per_page"=15,
  *     },
  *     routePrefix="/admin",
  *     collectionOperations={
@@ -60,6 +60,7 @@ class Competence
      * @ORM\Column(type="integer")
      * @Groups({"competenceRead","competenceWrite"})
      * @Groups("referentielGroupeCompetenceCompetenceRead")
+
      */
     private $id;
 
@@ -68,21 +69,17 @@ class Competence
      * @Groups({"competenceRead","groupeCompetenceRead"})
      * @Groups({"competenceRead","competenceWrite"})
      * @Groups("referentielGroupeCompetenceCompetenceRead")
+     * @Groups("groupeCompetenceRead")
+     * @Groups("groupeCompetenceWrite")
      */
     private $libelle;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups({"competenceRead","groupeCompetenceRead"})
-     * @Groups({"competenceRead","competenceWrite"})
-     * @Groups("referentielGroupeCompetenceCompetenceRead")
-     */
-    private $descriptif;
 
     /**
      * @ORM\Column(type="boolean")
      * @Groups({"competenceRead","groupeCompetenceRead","competenceWrite"})
      * @Groups("referentielGroupeCompetenceCompetenceRead")
+     * @Groups("groupeCompetenceRead")
+     * @Groups("groupeCompetenceWrite")
      */
     private $archive;
 
@@ -94,6 +91,7 @@ class Competence
     /**
      * @ApiSubresource()
      * @ORM\OneToMany(targetEntity=Niveau::class, mappedBy="competence")
+     * @Groups({"competenceRead","competenceWrite"})
      */
     private $niveau;
 
@@ -126,17 +124,6 @@ class Competence
         return $this;
     }
 
-    public function getDescriptif(): ?string
-    {
-        return $this->descriptif;
-    }
-
-    public function setDescriptif(string $descriptif): self
-    {
-        $this->descriptif = $descriptif;
-
-        return $this;
-    }
 
     public function getArchive(): ?bool
     {

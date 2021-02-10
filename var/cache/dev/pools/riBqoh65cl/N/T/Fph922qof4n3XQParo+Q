@@ -23,9 +23,20 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     'Default',
                 ],
             ],
+            'collectionOperations' => [
+                2 => [
+                    'addUtilisateur' => [
+                        'method' => 'POST',
+                        'path' => '/utilisateurs/add',
+                        'controller' => 'App\\Controller\\UtilisateurController::addUser',
+                    ],
+                    'get',
+                ],
+            ],
             'itemOperations' => [
                 2 => [
                     'get',
+                    'delete',
                     'updateUser' => [
                         'method' => 'PUT',
                         'security' => 'is_granted(\'ROLE_ADMIN\')',
@@ -35,9 +46,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             ],
             'attributes' => [
                 2 => [
-                    'pagination_items_per_page' => 3,
-                    'security' => 'is_granted(\'ROLE_ADMIN\')',
-                    'security_message' => 'Vous n\'avez pas acces à cette ressource',
+                    'pagination_items_per_page' => 10,
                     'denormalization_context' => [
                         'groups' => [
                             'userWrite',

@@ -27,10 +27,16 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 ],
             ],
             'groups' => [
-                2 => [
+                1 => [
                     'profilSortieRead',
                     'apprenantsRead',
                     'userRead',
+                ],
+                [
+                    'profilSortieRead',
+                    'apprenantsRead',
+                    'userRead',
+                    'profiSortielWrite',
                 ],
             ],
         ],

@@ -27,13 +27,17 @@ class GroupeCompetenceController extends AbstractController
     /**
      * @Route("api/admin/groupe_competences", name="saveGroupeCompetence", methods={"POST"})
      */
-    public function saveGroupeCompetence(Request $request)
+    public function saveGroupeCompetence(Request $request, CompetenceRepository $compRepo)
     {
         $data = $request->getContent();
         $newdata = json_decode($data, true);
-        $tabAverifier = ['libelle', 'descriptif', 'idGroupeCompetence'];
+      //  dd($newdata);
+        $i=(sizeof($newdata['competences']));
+        $competences=array();
+            
+        $tabAverifier = ['libelle', 'descriptif', 'competence'];
         $groupeCompetence = new GroupeCompetence();
-        $competence = $this->cpRepo->findOneBy(['id' => $newdata['idCompetence']]);
+       // $competence = $this->cpRepo->findOneBy(['id' => $newdata['idCompetence']]);
         $isValid=true;
         foreach ($tabAverifier as $value){
             if ($value ==''){
@@ -41,17 +45,12 @@ class GroupeCompetenceController extends AbstractController
                 return new JsonResponse(["messge"=>"Tous les champs sont obligatoire"],Response::HTTP_NOT_FOUND);
             }
         }
-        if (!$competence){
-            $newCompetence = new Competence();
-            $newCompetence->setLibelle($newdata['LibelleCompetence']);
-            $newCompetence->setArchive(false);
-            $newCompetence->setDescriptif("Descriptif de la nouvelle Competence");
-            $this->em->persist($newCompetence);
-            $this->em->flush();
-        }
+        for($j=0; $j< $i; $j++){
+            $competence = $compRepo->findOneBy(["id"=>$newdata['competences'][$j]['id']]);
+          $groupeCompetence->addCompetence($competence);
+          }
         $groupeCompetence->setDescriptif($newdata['descriptif']);
         $groupeCompetence->setLibelle($newdata['libelle']);
-        $groupeCompetence->addCompetence($competence);
         $this->em->persist($groupeCompetence);
         $this->em->flush();
         return new JsonResponse(["message"=>"Succes",Response::HTTP_CREATED]);

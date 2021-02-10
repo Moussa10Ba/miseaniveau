@@ -40,6 +40,31 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                             ],
                         ],
                     ],
+                    'delete' => [
+                        'method' => 'DELETE',
+                        'input_formats' => [
+                            'jsonld' => [
+                                'application/ld+json',
+                            ],
+                            'json' => [
+                                'application/json',
+                            ],
+                            'html' => [
+                                'text/html',
+                            ],
+                        ],
+                        'output_formats' => [
+                            'jsonld' => [
+                                'application/ld+json',
+                            ],
+                            'json' => [
+                                'application/json',
+                            ],
+                            'html' => [
+                                'text/html',
+                            ],
+                        ],
+                    ],
                     'updateUser' => [
                         'method' => 'PUT',
                         'security' => 'is_granted(\'ROLE_ADMIN\')',
@@ -73,8 +98,12 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             ],
             'collectionOperations' => [
                 [
-                    'get' => [
-                        'method' => 'GET',
+                    'addUtilisateur' => [
+                        'method' => 'POST',
+                        'path' => '/utilisateurs/add',
+                        'controller' => 'App\\Controller\\UtilisateurController::addUser',
+                        'input' => null,
+                        'output' => null,
                         'input_formats' => [
                             'jsonld' => [
                                 'application/ld+json',
@@ -98,8 +127,8 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                             ],
                         ],
                     ],
-                    'post' => [
-                        'method' => 'POST',
+                    'get' => [
+                        'method' => 'GET',
                         'input_formats' => [
                             'jsonld' => [
                                 'application/ld+json',
@@ -136,9 +165,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             ],
             'attributes' => [
                 [
-                    'pagination_items_per_page' => 3,
-                    'security' => 'is_granted(\'ROLE_ADMIN\')',
-                    'security_message' => 'Vous n\'avez pas acces à cette ressource',
+                    'pagination_items_per_page' => 10,
                     'denormalization_context' => [
                         'groups' => [
                             'userWrite',

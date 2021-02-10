@@ -73,6 +73,35 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                             ],
                         ],
                     ],
+                    'delete' => [
+                        'security' => '(is_granted(\'ROLE_ADMIN\') or is_granted(\'ROLE_Formateur\'))',
+                        'security_message' => 'Acces Denied',
+                        'input' => null,
+                        'output' => null,
+                        'method' => 'DELETE',
+                        'input_formats' => [
+                            'jsonld' => [
+                                'application/ld+json',
+                            ],
+                            'json' => [
+                                'application/json',
+                            ],
+                            'html' => [
+                                'text/html',
+                            ],
+                        ],
+                        'output_formats' => [
+                            'jsonld' => [
+                                'application/ld+json',
+                            ],
+                            'json' => [
+                                'application/json',
+                            ],
+                            'html' => [
+                                'text/html',
+                            ],
+                        ],
+                    ],
                 ],
             ],
             'collectionOperations' => [
@@ -80,6 +109,11 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     'post' => [
                         'security' => '(is_granted(\'ROLE_ADMIN\') or is_granted(\'ROLE_Formateur\'))',
                         'security_message' => 'Acces Denied',
+                        'denormalization_context' => [
+                            'groups' => [
+                                'profiSortielWrite',
+                            ],
+                        ],
                         'input' => null,
                         'output' => null,
                         'method' => 'POST',
@@ -148,7 +182,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             ],
             'attributes' => [
                 [
-                    'pagination_items_per_page' => 3,
+                    'pagination_items_per_page' => 5,
                     'normalization_context' => [
                         'groups' => [
                             'profilSortieRead',

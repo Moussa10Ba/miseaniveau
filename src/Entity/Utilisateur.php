@@ -13,7 +13,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use ApiPlatform\Core\Annotation\ApiProperty;
 
+// * "security"="is_granted('ROLE_ADMIN')",
+//  * "security_message"="Vous n'avez pas acces à cette ressource",
 
 /**
  * @ORM\Entity(repositoryClass=UtilisateurRepository::class)
@@ -23,12 +26,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * normalizationContext={"groups"={"userRead"}},
  * routePrefix="/admin",
  * attributes={
- * "pagination_items_per_page"=3,
- * "security"="is_granted('ROLE_ADMIN')",
- * "security_message"="Vous n'avez pas acces à cette ressource",
+ * "pagination_items_per_page"=10,
  * },
  * itemOperations={
- * "get",
+ * "get", "delete",
  *  "updateUser"=
  *     {
  * "method"="PUT",
@@ -36,6 +37,16 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * "security_message"="Vous n'avez pas acces à cette ressource",
  *
  *     },
+ *
+ * },
+ * collectionOperations = {
+ *  "addUtilisateur"={
+ *    "method"="POST",
+ *    "path"="/utilisateurs/add",
+ *   "controller"="App\Controller\UtilisateurController::addUser",
+ * 
+ * },
+ *  "get"
  * }
  * )
  * @ORM\InheritanceType("JOINED")
@@ -101,7 +112,8 @@ class Utilisateur implements UserInterface
     /**
      * @ORM\ManyToOne(targetEntity=Profil::class, inversedBy="utilisateurs")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups("userRead");
+     * @Groups({"userRead", "userWrite"});
+     *  @ApiProperty (readableLink = false, writableLink = false):
      */
     protected $profil;
 
@@ -268,8 +280,13 @@ class Utilisateur implements UserInterface
 
     public function getPhoto()
     {
+        if($this->photo)
+        {
+            $stream= stream_get_contents($this->photo);
+            return  base64_encode ($stream) ;
+        }
 
-        return  base64_encode ($this->photo) ;
+        return null;
     }
 
     public function setPhoto($photo): self

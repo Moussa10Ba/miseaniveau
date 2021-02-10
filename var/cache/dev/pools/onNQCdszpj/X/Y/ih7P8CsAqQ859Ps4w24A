@@ -15,8 +15,11 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             ],
             'itemOperations' => [
                 [
-                    'get' => [
+                    'get_id' => [
                         'method' => 'GET',
+                        'path' => 'formateurs/{id}',
+                        'input' => null,
+                        'output' => null,
                         'input_formats' => [
                             'jsonld' => [
                                 'application/ld+json',

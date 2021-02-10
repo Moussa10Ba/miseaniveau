@@ -5,6 +5,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
         clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ManyToOne'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ManyToOne')),
         clone ($p['Doctrine\\ORM\\Mapping\\JoinColumn'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\JoinColumn')),
         clone ($p['Symfony\\Component\\Serializer\\Annotation\\Groups'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Serializer\\Annotation\\Groups')),
+        clone ($p['ApiPlatform\\Core\\Annotation\\ApiProperty'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiProperty')),
     ],
     null,
     [
@@ -18,11 +19,18 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             'nullable' => [
                 1 => false,
             ],
+            'readableLink' => [
+                3 => false,
+            ],
+            'writableLink' => [
+                3 => false,
+            ],
         ],
         'Symfony\\Component\\Serializer\\Annotation\\Groups' => [
             'groups' => [
                 2 => [
                     'userRead',
+                    'userWrite',
                 ],
             ],
         ],
@@ -31,6 +39,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
         $o[0],
         $o[1],
         $o[2],
+        $o[3],
     ],
     []
 ); }];

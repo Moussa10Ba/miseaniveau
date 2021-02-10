@@ -2,17 +2,21 @@
 namespace App\Service;
 
 
-use ApiPlatform\Core\Validator\ValidatorInterface;
+use App\Entity\CM;
 use App\Entity\Profil;
+use App\Entity\Formateur;
+use App\Entity\Utilisateur;
+use App\Entity\Administrateur;
 use App\Repository\ProfilRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Serializer\Serializer;
+use ApiPlatform\Core\Validator\ValidatorInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserService
 {
@@ -25,33 +29,89 @@ class UserService
         $this->validator=$validator;
         $this->mailer=$mailer;
     }
-    public function addUser(Request $request,$profil=null)
-    {
-        $data=$request->request->all();
+    public function addUser( Request $request){
+    //$data=$request->request->all();
+   $data= json_decode($request->getContent(), true);  
+  //  dd($request->request->all());
+            //  $profilREcup=$data['profil'];
+            //   $id= intval(substr($profilREcup, 19));   
+        $profil=$this->profilRepo->findOneById($data['profil']);
+       $profil_libelle = $profil->getLibelle();
+    
+       if($profil_libelle === "ADMIN"){
+           $profil_libelle = "Administrateur";
+           $user= new Administrateur();
+       }elseif($profil_libelle=="Formateur"){
+              $user = new Formateur();
+       }elseif($profil_libelle=="CM"){
+        $user = new CM();
+ }
+        
+       
+    //    $user=$this->serializer->denormalize($data,"App\Entity\\".$profil_libelle);
+    //     dd($user);
+    //     $user->setProfil($profil);
+    
+    //     $photo=$request->files->get("photo");
+       
+    //     if ($photo){
+    //         $photoConverti = fopen($photo->getRealPath(),"rb");
+    //         $user->setPhoto($photoConverti);
+    //     }
+    //     $plainPassword = $this->givePassword();
+    //     $user->setPlainPassword($plainPassword);
+    //     $encoded =$this->encoder->encodePassword($user, $plainPassword);
+    //     $user->setPassword($encoded);
 
-        $profil=$this->profilRepo->findOneByLibelle($data["profil"]);
-       unset($data['profil']);
-        $user=$this->serializer->denormalize($data,"App\Entity\\".$profil->getLibelle(),true);
-        $user->setProfil($profil);
-        $photo=$request->files->get("photo");
-        if ($photo){
-            $photoConverti = fopen($photo->getRealPath(),"rb");
-            $user->setPhoto($photoConverti);
-        }
-        $plainPassword = $this->givePassword();
-        $user->setPlainPassword($plainPassword);
-        $encoded =$this->encoder->encodePassword($user, $plainPassword);
+    //     $errors = $this->validator->validate($user);
+    //     if ($errors){
+    //         $errors=$this->serializer->serialize($errors,json);
+    //         return $errors;
+    //     }
+    $user->setPrenom($data['prenom']);
+    $user->setNom($data['nom']);
+    $user->setEmail($data['email']);
+    $user->setLogin($data['username']);
+   // $user->setPhoto($data['prenom']);
+    $user->setProfil($profil);
+    $plainPassword = $this->givePassword();
+    $user->setPlainPassword($plainPassword);
+         $encoded =$this->encoder->encodePassword($user, $plainPassword);
         $user->setPassword($encoded);
-
-        $errors = $this->validator->validate($user);
-        if ($errors){
-            $errors=$this->serializer->serialize($errors,json);
-            return $errors;
-        }
-
         return $user;
 
+   
+
+    //   $user = $request->request->all();
+    // //   if(!$user){
+    // //       $user=$request->getContent();
+    // //       if($request->get('photo'))
+    // //       {
+    // //           $user=json_decode($user,true);
+    // //       }
+    // //   }
+    //   $profil = $this->serializer->denormalize($user["profil"],"App\Entity\Profil");
+    //   $profil_libelle = $profil->getLibelle();
+    //   $user=$this->serializer->denormalize($user, "App\Entity\\".$profil_libelle);
+    //   $user->setRoles(['ROLE_'.$profil_libelle]);
+    //   $plainPassword = $this->givePassword();
+    //       $user->setPlainPassword($plainPassword);
+    //       $encoded =$this->encoder->encodePassword($user, $plainPassword);
+    //       $user->setPassword($encoded);
+    //       $user->setLogin('MoussaLogin');
+    //       $photo=$request->files->get("photo");
+        
+    //     if ($photo){
+    //         $photoConverti = fopen($photo->getRealPath(),"rb");
+    //         $user->setPhoto($photoConverti);
+    //     }
+             //     return $user;
+            
     }
+
+
+
+
     public function givePassword($randoPassword="passer"){
         //return $randoPassword.rand(10,10000);
         return "passer";

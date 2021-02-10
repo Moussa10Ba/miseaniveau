@@ -24,11 +24,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *          "path"="/referentiels/groupe_competences",
  *          "normalization_context"={"groups"={"referentielGroupeCompetenceCompetenceRead"}},
  *     },
- *     "add_Referentiel"={
- *      "method"="POST",
- *      "path"="/referentiels",
- *      "denormalization_context"={"groups"={"referentielGroupeCompetenceWrite"}},
- *     }
+ * "addReferentiel"={
+ *    "method"="POST",
+ *    "path"="/referentiel/add",
+ *   "controller"="App\Controller\ReferentielController::addReferentiel",
+ *   "normalization_context"={"groups"={"referentielGroupeCompetenceCompetenceRead"}},
+ * 
+ * },
  *     }
  * )
  * @ORM\Entity(repositoryClass=ReferentielRepository::class)
@@ -52,13 +54,7 @@ class Referentiel
      */
     private $libelle;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups("referentielGroupeCompetenceRead")
-     * @Groups("referentielGroupeCompetenceCompetenceRead")
-     * @Groups("referentielGroupeCompetenceWrite")
-     */
-    private $programme;
+
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -83,6 +79,16 @@ class Referentiel
      */
     private $groupeCompetence;
 
+    /**
+     * @ORM\Column(type="blob", nullable=true)
+     */
+    private $programme;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $critereDad;
+
     public function __construct()
     {
         $this->groupeCompetence = new ArrayCollection();
@@ -105,17 +111,6 @@ class Referentiel
         return $this;
     }
 
-    public function getProgramme(): ?string
-    {
-        return $this->programme;
-    }
-
-    public function setProgramme(string $programme): self
-    {
-        $this->programme = $programme;
-
-        return $this;
-    }
 
     public function getCritereDev(): ?string
     {
@@ -161,6 +156,36 @@ class Referentiel
     public function removeGroupeCompetence(GroupeCompetence $groupeCompetence): self
     {
         $this->groupeCompetence->removeElement($groupeCompetence);
+
+        return $this;
+    }
+
+    public function getProgramme()
+    {
+        if($this->programme)
+        {
+            $stream= stream_get_contents($this->programme);
+            return  base64_encode ($stream) ;
+        }
+
+        return null;
+    }
+
+    public function setProgramme($programme): self
+    {
+        $this->programme = $programme;
+
+        return $this;
+    }
+
+    public function getCritereDad(): ?string
+    {
+        return $this->critereDad;
+    }
+
+    public function setCritereDad(string $critereDad): self
+    {
+        $this->critereDad = $critereDad;
 
         return $this;
     }

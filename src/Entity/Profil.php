@@ -23,7 +23,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *  normalizationContext={"groups"={"profilRead"}},
  * routePrefix="/admin",
  *  attributes={
- *      "pagination_items_per_page"=2,
+ *      "pagination_items_per_page"=10,
  *      "security"="is_granted('ROLE_ADMIN')",
  *      "security_message"="Vous n'avez pas acces à cette ressource"
  * },
@@ -41,18 +41,21 @@ class Profil
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("profilRead")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank;
-     * @Groups({"profilRead","profilWrite"})
+     * @Groups({"profilRead","profilWrite", "userWrite"})
      */
     private $libelle;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups("profilRead")
+     * @Groups("profilWrite")
      */
     private $archive;
 

@@ -4,6 +4,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
     $o = [
         clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Symfony\\Component\\Routing\\Annotation\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Annotation\\Route')),
         clone $p['Symfony\\Component\\Routing\\Annotation\\Route'],
+        clone $p['Symfony\\Component\\Routing\\Annotation\\Route'],
     ],
     null,
     [
@@ -11,12 +12,17 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             'path' => [
                 '/api/apprenants',
                 '/api/formateurs',
+                '/api/admin/utilisateurs/add',
             ],
             'name' => [
                 'addApprennant',
                 'addFormateur',
+                'addUtilisateur',
             ],
             'methods' => [
+                [
+                    'POST',
+                ],
                 [
                     'POST',
                 ],
@@ -29,6 +35,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
     [
         $o[0],
         $o[1],
+        $o[2],
     ],
     []
 ); }];

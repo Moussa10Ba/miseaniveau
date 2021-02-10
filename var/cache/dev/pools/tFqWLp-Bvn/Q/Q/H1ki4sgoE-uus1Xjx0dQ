@@ -27,7 +27,15 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 ],
             ],
             'groups' => [
-                2 => [
+                1 => [
+                    'profilRead',
+                ],
+                [
+                    'profilRead',
+                    'profilWrite',
+                    'userWrite',
+                ],
+                [
                     'profilRead',
                     'profilWrite',
                 ],

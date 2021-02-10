@@ -25,20 +25,15 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     },
  *  },
  *     itemOperations={
- * "get","put","delete"
- * },
+ *          "get_id"={
+ *          "method"="GET",
+ *           "path"="formateurs/{id}",
+ *          },"put","delete"
+ *      },
  * )
  */
 class Formateur extends  Utilisateur
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     * @Groups("get_promo_ref_formaRead")
-     */
-    protected $id;
-
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups("get_promo_ref_formaRead")
@@ -64,10 +59,6 @@ class Formateur extends  Utilisateur
         $this->promos = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getSpecialite(): ?string
     {
