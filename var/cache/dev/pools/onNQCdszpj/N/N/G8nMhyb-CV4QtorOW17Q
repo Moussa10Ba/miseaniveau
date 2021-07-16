@@ -116,11 +116,6 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     'get_Referentiel_GroupeCompetences' => [
                         'method' => 'GET',
                         'path' => '/referentiels',
-                        'normalization_context' => [
-                            'groups' => [
-                                'referentielGroupeCompetenceRead',
-                            ],
-                        ],
                         'input' => null,
                         'output' => null,
                         'input_formats' => [
@@ -149,11 +144,6 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     'get_Referentiel_GroupeCompetences_Competence' => [
                         'method' => 'GET',
                         'path' => '/referentiels/groupe_competences',
-                        'normalization_context' => [
-                            'groups' => [
-                                'referentielGroupeCompetenceCompetenceRead',
-                            ],
-                        ],
                         'input' => null,
                         'output' => null,
                         'input_formats' => [
@@ -183,11 +173,6 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                         'method' => 'POST',
                         'path' => '/referentiel/add',
                         'controller' => 'App\\Controller\\ReferentielController::addReferentiel',
-                        'normalization_context' => [
-                            'groups' => [
-                                'referentielGroupeCompetenceCompetenceRead',
-                            ],
-                        ],
                         'input' => null,
                         'output' => null,
                         'input_formats' => [
@@ -226,6 +211,16 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             ],
             'attributes' => [
                 [
+                    'denormalization_context' => [
+                        'groups' => [
+                            'referentielWrite',
+                        ],
+                    ],
+                    'normalization_context' => [
+                        'groups' => [
+                            'referentielRead',
+                        ],
+                    ],
                     'route_prefix' => '/admin',
                     'input' => null,
                     'output' => null,

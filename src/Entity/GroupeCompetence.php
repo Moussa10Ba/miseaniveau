@@ -55,9 +55,8 @@ class GroupeCompetence
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("referentielGroupeCompetenceRead")
-     * @Groups("referentielGroupeCompetenceCompetenceRead")
-     * @Groups("referentielGroupeCompetenceWrite")
+    * @Groups("referentielRead")
+     * @Groups("referentielWrite")
      * @Groups("groupeCompetenceRead")
      */
     private $id;
@@ -66,8 +65,8 @@ class GroupeCompetence
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      * @Groups("referentielGroupeCompetenceRead")
-     * @Groups("referentielGroupeCompetenceCompetenceRead")
-     * @Groups("referentielGroupeCompetenceWrite")
+     * @Groups("referentielRead")
+     * @Groups("referentielWrite")
      * @Groups("groupeCompetenceRead")
      * @Groups("groupeCompetenceWrite")
      */

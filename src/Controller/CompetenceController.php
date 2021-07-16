@@ -39,8 +39,9 @@ class CompetenceController extends AbstractController
                 }
                 $em->flush();
                 return new JsonResponse(["message"=>"Update OK",Response::HTTP_OK]);
+                
         }
-
+             
     }
 
     /**

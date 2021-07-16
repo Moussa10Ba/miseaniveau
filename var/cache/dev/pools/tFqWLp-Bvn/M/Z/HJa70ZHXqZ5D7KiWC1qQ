@@ -31,15 +31,14 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             ],
             'groups' => [
                 1 => [
-                    'referentielGroupeCompetenceRead',
-                    'referentielGroupeCompetenceCompetenceRead',
-                    'referentielGroupeCompetenceWrite',
+                    'referentielRead',
+                    'referentielWrite',
                     'groupeCompetenceRead',
                 ],
                 [
                     'referentielGroupeCompetenceRead',
-                    'referentielGroupeCompetenceCompetenceRead',
-                    'referentielGroupeCompetenceWrite',
+                    'referentielRead',
+                    'referentielWrite',
                     'groupeCompetenceRead',
                     'groupeCompetenceWrite',
                 ],

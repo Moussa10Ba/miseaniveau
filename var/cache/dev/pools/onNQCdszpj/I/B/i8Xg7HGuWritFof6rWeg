@@ -179,39 +179,6 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                             ],
                         ],
                     ],
-                    'add_promo_apprenant' => [
-                        'method' => 'POST',
-                        'path' => '/promo',
-                        'denormalization_context' => [
-                            'groups' => [
-                                'add_promo_apprenantWrite',
-                            ],
-                        ],
-                        'input' => null,
-                        'output' => null,
-                        'input_formats' => [
-                            'jsonld' => [
-                                'application/ld+json',
-                            ],
-                            'json' => [
-                                'application/json',
-                            ],
-                            'html' => [
-                                'text/html',
-                            ],
-                        ],
-                        'output_formats' => [
-                            'jsonld' => [
-                                'application/ld+json',
-                            ],
-                            'json' => [
-                                'application/json',
-                            ],
-                            'html' => [
-                                'text/html',
-                            ],
-                        ],
-                    ],
                     'getApprenantGroupePrincipal' => [
                         'method' => 'GET',
                         'path' => '/promo/apprenants/principal',
@@ -259,6 +226,16 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             'attributes' => [
                 [
                     'pagination_items_per_page' => 10,
+                    'denormalization_context' => [
+                        'groups' => [
+                            'promoWrite',
+                        ],
+                    ],
+                    'normalization_context' => [
+                        'groups' => [
+                            'promoRead',
+                        ],
+                    ],
                     'route_prefix' => '/admin',
                     'input' => null,
                     'output' => null,

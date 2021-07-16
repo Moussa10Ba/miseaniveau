@@ -26,7 +26,7 @@ use ApiPlatform\Core\Annotation\ApiProperty;
  * normalizationContext={"groups"={"userRead"}},
  * routePrefix="/admin",
  * attributes={
- * "pagination_items_per_page"=10,
+ * "pagination_items_per_page"=1000,
  * },
  * itemOperations={
  * "get", "delete",
@@ -113,7 +113,7 @@ class Utilisateur implements UserInterface
      * @ORM\ManyToOne(targetEntity=Profil::class, inversedBy="utilisateurs")
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"userRead", "userWrite"});
-     *  @ApiProperty (readableLink = false, writableLink = false):
+     * @ApiProperty (readableLink = false, writableLink = false):
      */
     protected $profil;
 

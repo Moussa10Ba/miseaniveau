@@ -39,7 +39,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     },
  *     itemOperations={
  *     "get"={
- *      "security"="(is_granted('ROLE_ADMIN) or is_granted('ROLE_CM') or is_grated('ROLE_Formateur'))",
+ *      "security"="(is_granted('ROLE_ADMIN') or is_granted('ROLE_CM') or is_granted('ROLE_Formateur'))",
  *     "seccurity_message"="Acces Denied",
  *     },
  *     "updateCompetencee"={

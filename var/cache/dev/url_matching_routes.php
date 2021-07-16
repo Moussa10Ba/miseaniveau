@@ -10,9 +10,10 @@ return [
     [ // $staticRoutes
         '/api/admin/competences' => [[['_route' => 'addCompetence', '_controller' => 'App\\Controller\\CompetenceController::AddCompetence'], null, ['POST' => 0], null, false, false, null]],
         '/api/admin/groupe_competences' => [[['_route' => 'saveGroupeCompetence', '_controller' => 'App\\Controller\\GroupeCompetenceController::saveGroupeCompetence'], null, ['POST' => 0], null, false, false, null]],
-        '/api/admin/referentiels' => [
+        '/api/admin/promo/add' => [[['_route' => 'addPromo', '_controller' => 'App\\Controller\\PromoController::addPromo'], null, ['POST' => 0], null, false, false, null]],
+        '/api/admin/referentiel/add' => [
             [['_route' => 'addReferentiel', '_controller' => 'App\\Controller\\ReferentielController::addReferentiel'], null, ['POST' => 0], null, false, false, null],
-            [['_route' => 'api_referentiels_get_Referentiel_GroupeCompetences_collection', '_controller' => 'api_platform.action.get_collection', '_format' => null, '_api_resource_class' => 'App\\Entity\\Referentiel', '_api_collection_operation_name' => 'get_Referentiel_GroupeCompetences'], null, ['GET' => 0], null, false, false, null],
+            [['_route' => 'api_referentiels_addReferentiel_collection', '_controller' => 'App\\Controller\\ReferentielController::addReferentiel', '_format' => null, '_api_resource_class' => 'App\\Entity\\Referentiel', '_api_collection_operation_name' => 'addReferentiel'], null, ['POST' => 0], null, false, false, null],
         ],
         '/api/apprenants' => [[['_route' => 'addApprennant', '_controller' => 'App\\Controller\\UtilisateurController::addUser'], null, ['POST' => 0], null, false, false, null]],
         '/api/formateurs' => [[['_route' => 'addFormateur', '_controller' => 'App\\Controller\\UtilisateurController::addUser'], null, ['POST' => 0], null, false, false, null]],
@@ -20,14 +21,11 @@ return [
             [['_route' => 'addUtilisateur', '_controller' => 'App\\Controller\\UtilisateurController::addUser'], null, ['POST' => 0], null, false, false, null],
             [['_route' => 'api_utilisateurs_addUtilisateur_collection', '_controller' => 'App\\Controller\\UtilisateurController::addUser', '_format' => null, '_api_resource_class' => 'App\\Entity\\Utilisateur', '_api_collection_operation_name' => 'addUtilisateur'], null, ['POST' => 0], null, false, false, null],
         ],
-        '/api/admin/promo' => [
-            [['_route' => 'api_promos_get_promo_ref_forma_collection', '_controller' => 'api_platform.action.get_collection', '_format' => null, '_api_resource_class' => 'App\\Entity\\Promo', '_api_collection_operation_name' => 'get_promo_ref_forma'], null, ['GET' => 0], null, false, false, null],
-            [['_route' => 'api_promos_add_promo_apprenant_collection', '_controller' => 'api_platform.action.post_collection', '_format' => null, '_api_resource_class' => 'App\\Entity\\Promo', '_api_collection_operation_name' => 'add_promo_apprenant'], null, ['POST' => 0], null, false, false, null],
-        ],
+        '/api/admin/promo' => [[['_route' => 'api_promos_get_promo_ref_forma_collection', '_controller' => 'api_platform.action.get_collection', '_format' => null, '_api_resource_class' => 'App\\Entity\\Promo', '_api_collection_operation_name' => 'get_promo_ref_forma'], null, ['GET' => 0], null, false, false, null]],
         '/api/admin/promo/apprenants/attente' => [[['_route' => 'api_promos_get_promo_ref_formaApp_collection', '_controller' => 'api_platform.action.get_collection', '_format' => null, '_api_resource_class' => 'App\\Entity\\Promo', '_api_collection_operation_name' => 'get_promo_ref_formaApp'], null, ['GET' => 0], null, false, false, null]],
         '/api/admin/promo/apprenants/principal' => [[['_route' => 'api_promos_getApprenantGroupePrincipal_collection', '_controller' => 'api_platform.action.get_collection', '_format' => null, '_api_resource_class' => 'App\\Entity\\Promo', '_api_collection_operation_name' => 'getApprenantGroupePrincipal'], null, ['GET' => 0], null, false, false, null]],
+        '/api/admin/referentiels' => [[['_route' => 'api_referentiels_get_Referentiel_GroupeCompetences_collection', '_controller' => 'api_platform.action.get_collection', '_format' => null, '_api_resource_class' => 'App\\Entity\\Referentiel', '_api_collection_operation_name' => 'get_Referentiel_GroupeCompetences'], null, ['GET' => 0], null, false, false, null]],
         '/api/admin/referentiels/groupe_competences' => [[['_route' => 'api_referentiels_get_Referentiel_GroupeCompetences_Competence_collection', '_controller' => 'api_platform.action.get_collection', '_format' => null, '_api_resource_class' => 'App\\Entity\\Referentiel', '_api_collection_operation_name' => 'get_Referentiel_GroupeCompetences_Competence'], null, ['GET' => 0], null, false, false, null]],
-        '/api/admin/referentiel/add' => [[['_route' => 'api_referentiels_addReferentiel_collection', '_controller' => 'App\\Controller\\ReferentielController::addReferentiel', '_format' => null, '_api_resource_class' => 'App\\Entity\\Referentiel', '_api_collection_operation_name' => 'addReferentiel'], null, ['POST' => 0], null, false, false, null]],
         '/api/login_check' => [[['_route' => 'api_login_check'], null, null, null, false, false, null]],
     ],
     [ // $regexpList

@@ -14,10 +14,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ReferentielController extends AbstractController
 {
     /**
-     * @Route("/api/admin/referentiels", name="addReferentiel", methods={"POST"})
+     * @Route("/api/admin/referentiel/add", name="addReferentiel", methods={"POST"})
      */
-    public function addReferentiel(ReferentielService $refser, Request $request, SerializerInterface $serializer, EntityManagerInterface $manager)
+    public function addReferentiel(ReferentielService $refser, Request $request)
     {
-       return $this->json($refser->createReferentiel($request, $serializer, $manager),200);
+       
+       return $this->json($refser->createReferentiel($request),200);
+       //return $this->json($request->request,200);
     }
 }

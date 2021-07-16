@@ -68,26 +68,31 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     'get_promo_ref_formaRead',
                     'add_promo_apprenantWrite',
                     'getApprenantGroupePrincipalRead',
+                    'promoRead',
                 ],
                 [
                     'get_promo_ref_formaRead',
                     'add_promo_apprenantWrite',
                     'getApprenantGroupePrincipalRead',
+                    'promoRead',
                 ],
                 [
                     'get_promo_ref_formaRead',
                     'add_promo_apprenantWrite',
                     'getApprenantGroupePrincipalRead',
+                    'promoRead',
                 ],
                 [
                     'get_promo_ref_formaRead',
                     'add_promo_apprenantWrite',
                     'getApprenantGroupePrincipalRead',
+                    'promoRead',
                 ],
                 [
                     'get_promo_ref_formaRead',
                     'add_promo_apprenantWrite',
                     'getApprenantGroupePrincipalRead',
+                    'promoRead',
                 ],
                 [
                     'add_promo_apprenantWrite',
@@ -96,9 +101,14 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 ],
                 [
                     'get_promo_ref_formaRead',
+                    'promoRead',
                 ],
-                10 => [
+                [
+                    'promoRead',
+                ],
+                [
                     'get_promo_ref_formaRead',
+                    'promoRead',
                 ],
                 12 => [
                     'get_promo_ref_formaRead',

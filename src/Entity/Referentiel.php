@@ -12,24 +12,24 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
+ *     denormalizationContext={"groups"={"referentielWrite"}},
+ *     normalizationContext={"groups"={"referentielRead"}},
  *     routePrefix="/admin",
  *     collectionOperations={
  *     "get_Referentiel_GroupeCompetences"={
  *          "method"="GET",
  *          "path"="/referentiels",
- *          "normalization_context"={"groups"={"referentielGroupeCompetenceRead"}},
+ *         
  *     },
  *     "get_Referentiel_GroupeCompetences_Competence"={
  *          "method"="GET",
  *          "path"="/referentiels/groupe_competences",
- *          "normalization_context"={"groups"={"referentielGroupeCompetenceCompetenceRead"}},
+ *          
  *     },
  * "addReferentiel"={
  *    "method"="POST",
  *    "path"="/referentiel/add",
- *   "controller"="App\Controller\ReferentielController::addReferentiel",
- *   "normalization_context"={"groups"={"referentielGroupeCompetenceCompetenceRead"}},
- * 
+ *   "controller"="App\Controller\ReferentielController::addReferentiel", 
  * },
  *     }
  * )
@@ -41,16 +41,15 @@ class Referentiel
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("referentielGroupeCompetenceRead")
-     * @Groups("referentielGroupeCompetenceCompetenceRead")
+     * @Groups("referentielRead")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("referentielGroupeCompetenceRead")
-     * @Groups("referentielGroupeCompetenceCompetenceRead")
-     * @Groups("referentielGroupeCompetenceWrite")
+     * @Groups("referentielRead")
+     * @Groups("referentielWrite")
      */
     private $libelle;
 
@@ -59,8 +58,8 @@ class Referentiel
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("referentielGroupeCompetenceRead")
-     * @Groups("referentielGroupeCompetenceCompetenceRead")
-     * @Groups("referentielGroupeCompetenceWrite")
+     * @Groups("referentielRead")
+     * @Groups("referentielWrite")
      */
     private $critereDev;
 
@@ -73,21 +72,32 @@ class Referentiel
      * @ApiSubresource()
      * @ORM\ManyToMany(targetEntity=GroupeCompetence::class, inversedBy="referentiels",cascade={"persist"})
      * @Groups("referentielGroupeCompetenceRead")
-     * @Groups("referentielGroupeCompetenceCompetenceRead")
-     * @Groups("referentielGroupeCompetenceWrite")
+     * @Groups("referentielRead")
+     * @Groups("referentielWrite")
      *
      */
     private $groupeCompetence;
 
     /**
      * @ORM\Column(type="blob", nullable=true)
+     * @Groups("referentielRead")
+     * @Groups("referentielWrite")
      */
     private $programme;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups("referentielRead")
+     * @Groups("referentielWrite")
      */
     private $critereDad;
+
+    /**
+     * @ORM\Column(type="text")
+     * @Groups("referentielRead")
+     * @Groups("referentielWrite")
+     */
+    private $presentation;
 
     public function __construct()
     {
@@ -186,6 +196,18 @@ class Referentiel
     public function setCritereDad(string $critereDad): self
     {
         $this->critereDad = $critereDad;
+
+        return $this;
+    }
+
+    public function getPresentation(): ?string
+    {
+        return $this->presentation;
+    }
+
+    public function setPresentation(string $presentation): self
+    {
+        $this->presentation = $presentation;
 
         return $this;
     }

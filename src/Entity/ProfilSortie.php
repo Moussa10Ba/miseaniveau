@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     normalizationContext={"groups"={"profilSortieRead"}},
  *     denormalizationContext={"groups"={"profiSortielWrite"}},
  *   attributes={
- *      "pagination_items_per_page"=5,
+ *      "pagination_items_per_page"=10,
  *      },
  *      routePrefix="admin",
  *      collectionOperations={

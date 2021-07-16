@@ -30,8 +30,8 @@ class UserService
         $this->mailer=$mailer;
     }
     public function addUser( Request $request){
-    //$data=$request->request->all();
-   $data= json_decode($request->getContent(), true);  
+    $data=$request->request->all();
+   //$data= json_decode($request->getContent(), true);  
   //  dd($request->request->all());
             //  $profilREcup=$data['profil'];
             //   $id= intval(substr($profilREcup, 19));   
@@ -68,10 +68,17 @@ class UserService
     //         $errors=$this->serializer->serialize($errors,json);
     //         return $errors;
     //     }
+    $photo=$request->files->get("photo");
+       
+         if ($photo){
+             $photoConverti = fopen($photo->getRealPath(),"rb");
+             $user->setPhoto($photoConverti);
+         }
     $user->setPrenom($data['prenom']);
     $user->setNom($data['nom']);
     $user->setEmail($data['email']);
     $user->setLogin($data['username']);
+
    // $user->setPhoto($data['prenom']);
     $user->setProfil($profil);
     $plainPassword = $this->givePassword();

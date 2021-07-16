@@ -13,6 +13,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass=PromoRepository::class)
  * @ApiResource(
+ *    denormalizationContext={"groups"={"promoWrite"}},
+ *    normalizationContext={"groups"={"promoRead"}},
  *     attributes={
  *     "security"="(is_granted('ROLE_ADMIN') or is_granted('ROLE_Formateur') or is_granted('ROLE_CM'))",
  *      "security_message"="Acces Denied",
@@ -31,11 +33,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     "method"="GET",
  *     "path"="/promo/apprenants/attente",
  *     "normalization_context"={"groups"={"get_promo_ref_formaRead"}},
- *     },
- *     "add_promo_apprenant"={
- *         "method"="POST",
- *          "path"="/promo",
- *          "denormalization_context"={"groups"={"add_promo_apprenantWrite"}},
  *     },
  *     "getApprenantGroupePrincipal"={
  *             "method"="GET",
@@ -61,6 +58,7 @@ class Promo
      * @Groups("get_promo_ref_formaRead")
      * @Groups("add_promo_apprenantWrite")
      * @Groups("getApprenantGroupePrincipalRead")
+     * @Groups("promoRead")
      */
     private $lieu;
 
@@ -69,6 +67,7 @@ class Promo
      * @Groups("get_promo_ref_formaRead")
      * @Groups("add_promo_apprenantWrite")
      * @Groups("getApprenantGroupePrincipalRead")
+     * @Groups("promoRead")
      */
     private $referenceAgate;
 
@@ -77,6 +76,7 @@ class Promo
      * @Groups("get_promo_ref_formaRead")
      * @Groups("add_promo_apprenantWrite")
      * @Groups("getApprenantGroupePrincipalRead")
+     * @Groups("promoRead")
      */
     private $langue;
 
@@ -85,6 +85,7 @@ class Promo
      * @Groups("get_promo_ref_formaRead")
      * @Groups("add_promo_apprenantWrite")
      * @Groups("getApprenantGroupePrincipalRead")
+     * @Groups("promoRead")
      */
     private $dateDebut;
 
@@ -93,11 +94,12 @@ class Promo
      * @Groups("get_promo_ref_formaRead")
      * @Groups("add_promo_apprenantWrite")
      * @Groups("getApprenantGroupePrincipalRead")
+     * @Groups("promoRead")
      */
     private $dateFin;
 
     /**
-     * @ORM\OneToMany(targetEntity=Apprenant::class, mappedBy="promo")
+     * @ORM\OneToMany(targetEntity=Apprenant::class, mappedBy="promo",cascade={"persist"})
      * @Groups("add_promo_apprenantWrite")
      * @Groups("get_promo_ref_formaRead")
      * @Groups("getApprenantGroupePrincipalRead")
@@ -108,17 +110,20 @@ class Promo
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("get_promo_ref_formaRead")
+     * @Groups("promoRead")
      */
     private $titre;
 
     /**
      * @ORM\Column(type="blob", nullable=true)
+     * @Groups("promoRead")
      */
     private $avatar;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("get_promo_ref_formaRead")
+     * @Groups("promoRead")
      */
     private $description;
 
@@ -135,7 +140,7 @@ class Promo
     private $groupePromos;
 
     /**
-     * @ORM\OneToMany(targetEntity=Referentiel::class, mappedBy="promo")
+     * @ORM\OneToMany(targetEntity=Referentiel::class, mappedBy="promo",cascade={"persist"})
      * @ApiSubresource()
      * @Groups("get_promo_ref_formaRead")
      */
@@ -144,7 +149,7 @@ class Promo
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $type;
+    private $type="Open";
 
     /**
      * @ORM\ManyToMany(targetEntity=Formateur::class, inversedBy="promos")
@@ -277,7 +282,13 @@ class Promo
 
     public function getAvatar()
     {
-        return $this->avatar;
+        if($this->avatar)
+        {
+            $stream= stream_get_contents($this->avatar);
+            return  base64_encode ($stream) ;
+        }
+
+        return null;
     }
 
     public function setAvatar($avatar): self
